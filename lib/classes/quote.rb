@@ -8,8 +8,8 @@ class HelloDocker::Quote
     end 
 
     def self.import
-        data = CSV.read("lib/data/quotes.csv")
-        puts data
+        data = CSV.read("lib/data/quotes.csv", headers: true)
+        data.each{|row| new(row.to_hash)}
     end 
 
     def self.all
