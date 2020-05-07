@@ -35,8 +35,10 @@ class HelloDocker::CLI
     end
 
     def see_famous_quotes_in_whale
-        puts "Here are some famous quotes. Which would you like to see a translation for?"
-        HelloDocker::Quote.all
+        selection = @prompt.select("\nHere are some famous quotes. Which would you like to see a translation for?", HelloDocker::Quote.all.map(&:text)) 
+        chosen_quote = HelloDocker::Quote.find_by_text(selection)
+        puts "\nThat quote is from #{chosen_quote.author} and roughly translates as:"
+        puts WordWrap.ww("\t\"#{chosen_quote.translation.colorize(:light_cyan)}\"", 60)
     end
 
     def translate_my_thoughts
