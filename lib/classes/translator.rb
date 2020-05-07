@@ -1,0 +1,3 @@
+class HelloDocker::Translator
+
+end

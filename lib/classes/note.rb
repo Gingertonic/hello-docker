@@ -1,0 +1,3 @@
+class HelloDocker::Note
+
+end
