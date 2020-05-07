@@ -4,12 +4,17 @@ class HelloDocker::CLI
     end
 
     def run 
-        puts 'Hello, Docker!'
-        puts "We speak whale around here."
+        puts "\nHello, Docker!\n"
+        welcome
         app_loop
     end
 
     private
+    def welcome 
+        @name = @prompt.ask("Who do I have the pleasure of speaking with today?") { |q| q.modify :strip }
+        puts "\nWelcome, #{@name}. We speak whale around here.".colorize(:light_cyan)
+    end 
+
     def app_loop
         loop do
             instructions
@@ -18,7 +23,7 @@ class HelloDocker::CLI
     end 
 
     def instructions
-        @input = @prompt.select("What would you like to do?", options)
+        @input = @prompt.select("\nWhat would you like to do?", options)
     end
 
     def options
@@ -35,11 +40,13 @@ class HelloDocker::CLI
 
     def translate_my_thoughts
         thought = @prompt.ask("What would you like to say in whale?") { |q| q.modify :strip }
-        puts thought
+        translation = HelloDocker::Translator.to_whale(thought)
+        puts "\nOo well, in whale, you would say #{translation.colorize(:light_cyan)}"
     end
 
     def goodbye_whale 
-        puts "Bye for now! Ooooaaahhhhh!"
+        message = HelloDocker::Translator.to_whale("Bye, #{@name}")
+        puts "Bye for now! #{message.colorize(:light_cyan)}! \n"
         exit
     end
 end
