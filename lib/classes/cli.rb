@@ -36,6 +36,7 @@ class HelloDocker::CLI
 
     def see_famous_quotes_in_whale
         puts "Here are some famous quotes. Which would you like to see a translation for?"
+        HelloDocker::Quote.all
     end
 
     def translate_my_thoughts
