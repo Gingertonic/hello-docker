@@ -6,5 +6,7 @@ COPY . ./
 
 RUN gem update --system && gem install bundler && bundle install 
 
-ENTRYPOINT bin/hello-docker
+ENTRYPOINT bin/whale-talk
+
+
 

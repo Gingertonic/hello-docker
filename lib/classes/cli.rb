@@ -1,4 +1,4 @@
-class HelloDocker::CLI
+class WhaleTalk::CLI
     def initialize
         @prompt = TTY::Prompt.new
     end
@@ -35,20 +35,20 @@ class HelloDocker::CLI
     end
 
     def see_famous_quotes_in_whale
-        selection = @prompt.select("\nHere are some famous quotes. Which would you like to see a translation for?", HelloDocker::Quote.all.map(&:text)) 
-        chosen_quote = HelloDocker::Quote.find_by_text(selection)
+        selection = @prompt.select("\nHere are some famous quotes. Which would you like to see a translation for?", WhaleTalk::Quote.all.map(&:text)) 
+        chosen_quote = WhaleTalk::Quote.find_by_text(selection)
         puts "\nThat quote is from #{chosen_quote.author} and roughly translates as:"
         puts WordWrap.ww("\t\"#{chosen_quote.translation.colorize(:light_cyan)}\"", 60)
     end
 
     def translate_my_thoughts
         thought = @prompt.ask("What would you like to say in whale?") { |q| q.modify :strip }
-        translation = HelloDocker::Translator.to_whale(thought)
+        translation = WhaleTalk::Translator.to_whale(thought)
         puts "\nOo well, in whale, you would say #{translation.colorize(:light_cyan)}"
     end
 
     def goodbye_whale 
-        message = HelloDocker::Translator.to_whale("Bye, #{@name}")
+        message = WhaleTalk::Translator.to_whale("Bye, #{@name}")
         puts "Bye for now! #{message.colorize(:light_cyan)}! \n"
         exit
     end

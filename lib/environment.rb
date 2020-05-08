@@ -1,4 +1,4 @@
-module HelloDocker end
+module WhaleTalk end
 
 require 'colorize'
 require 'tty-prompt'

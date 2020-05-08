@@ -1,4 +1,4 @@
-class HelloDocker::Quote
+class WhaleTalk::Quote
     attr_accessor :id, :author, :text
     @@all = []
 
@@ -8,7 +8,7 @@ class HelloDocker::Quote
     end 
 
     def translation
-        @translation ||= HelloDocker::Translator.to_whale(text)
+        @translation ||= WhaleTalk::Translator.to_whale(text)
     end
 
     def self.all
